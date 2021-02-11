@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: msupandrunning/flights
+  repository: victorrosa/flights
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0"
+  tag: "v1.3"
 
 MYSQL_HOST: rds.staging.msur-vpc.com
 MYSQL_USER: microservices

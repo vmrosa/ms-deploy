@@ -9,12 +9,36 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.8"
+  livenessProbe:
+    failureThreshold: 3
+    httpGet:
+      path: /actuator/probes/liveness
+      port: http
+    scheme: HTTP
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  name: ms-flights
+  ports:
+    - containerPort: 5501
+        name: http
+        protocol: TCP
+   readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /actuator/probes/readiness
+        port: http
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
 
 MYSQL_HOST: rds.staging.msur-vpc.com
 MYSQL_USER: microservices
 MYSQL_DATABASE: microservices_db
 MYSQLSecretName: mysql
 MYSQLSecretKey: password
+
               
 imagePullSecrets: []
 nameOverride: ""
@@ -68,22 +92,22 @@ autoscaling:
   ## Readiness and liveness probes for default backend
   ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
   ##
-  readinessProbe:
-    httpGet:
-      path: /actuator/probes/liveness
-    failureThreshold: 3
-    initialDelaySeconds: 10
-    periodSeconds: 10
-    successThreshold: 1
-    timeoutSeconds: 1
-  livenessProbe:
-    httpGet:
-      path: /actuator/probes/readiness
-    failureThreshold: 3
-    initialDelaySeconds: 10
-    periodSeconds: 10
-    successThreshold: 1
-    timeoutSeconds: 1
+  #readinessProbe:
+  #  httpGet:
+  #    path: /actuator/probes/liveness
+  #  failureThreshold: 3
+  #  initialDelaySeconds: 10
+  #  periodSeconds: 10
+  #  successThreshold: 1
+  #  timeoutSeconds: 1
+  #livenessProbe:
+  #  httpGet:
+  #    path: /actuator/probes/readiness
+  #  failureThreshold: 3
+  #  initialDelaySeconds: 10
+  #  periodSeconds: 10
+  #  successThreshold: 1
+  #  timeoutSeconds: 1
 
 nodeSelector: {}
 

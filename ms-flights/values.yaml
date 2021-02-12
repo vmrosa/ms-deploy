@@ -70,9 +70,9 @@ autoscaling:
   ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
   ##
   ports:
-    - containerPort: 8080
-        name: http
-        protocol: TCP
+  - name: http
+    containerPort: 8080
+    protocol: TCP
 
   readinessProbe:
     httpGet:

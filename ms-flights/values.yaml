@@ -18,15 +18,15 @@ image:
     periodSeconds: 10
     successThreshold: 1
     timeoutSeconds: 1
-   readinessProbe:
-      failureThreshold: 3
+  readinessProbe:
+    failureThreshold: 3
       httpGet:
         path: /actuator/probes/readiness
         port: http
         scheme: HTTP
-      periodSeconds: 10
-      successThreshold: 1
-      timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
 
 MYSQL_HOST: rds.staging.msur-vpc.com
 MYSQL_USER: microservices

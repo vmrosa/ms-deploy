@@ -18,12 +18,17 @@ image:
     periodSeconds: 10
     successThreshold: 1
     timeoutSeconds: 1
+  name: ms-flights
+  ports:
+    - containerPort: 5501
+        name: http
+        protocol: TCP
   readinessProbe:
     failureThreshold: 3
-      httpGet:
-        path: /actuator/probes/readiness
-        port: http
-        scheme: HTTP
+    httpGet:
+      path: /actuator/probes/readiness
+      port: http
+    scheme: HTTP
     periodSeconds: 10
     successThreshold: 1
     timeoutSeconds: 1
